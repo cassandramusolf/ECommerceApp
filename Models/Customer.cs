@@ -4,11 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace EcommerceApplication.Models
 {
     [Table("Customer")]
-    public class Customer
+    public class Customer:IdentityUser
     {
         public Customer()
         {
@@ -16,8 +17,7 @@ namespace EcommerceApplication.Models
             Orders = new HashSet<Order>();
         }
 
-        [ScaffoldColumn(false)]
-        public int CustomerId { get; set; }
+       // public int CustomerId { get; set; }
         [Required(ErrorMessage = "Customer Name is required!")]
         public string CustomerName { get; set; }
         public string LastName { get; set; }
@@ -28,8 +28,8 @@ namespace EcommerceApplication.Models
         [DataType(DataType.PostalCode)]
         public int PostalCode { get; set; }
 
-        [EmailAddress]
-        public string EmailAddress { get; set; }
+        //[EmailAddress]
+        //public string EmailAddress { get; set; }
         public DateTime? DateEntered { get; set; }
         public virtual ICollection<CartItem> CartItems { get; set; }
         public virtual ICollection<Order> Orders { get; set; }

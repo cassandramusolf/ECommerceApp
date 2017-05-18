@@ -11,25 +11,21 @@
     <link href="~/css/default.css" rel="stylesheet" />
     <link href="~/css/styles.css" rel="stylesheet" />
 </head>
-<body class="fix-header fix-sidebar">
-    <div id="wrapper">
+<body class="fix-header fix-sidebar content-wrapper" style="background-color:#ECEFF1">
+    <div>
         @Html.Partial("AdminPartials/_TopMenu")
-        @Html.Partial("AdminPartials/_Sidebar")
-        <div id="page-wrapper" style="min-height:600px">
-            <div class="container-fluid">
-                @RenderBody()
-                <hr />
-                <footer class="footer text-center">© @DateTime.Now.Year | Powered by Love</footer>
-            </div>
+        <div class="m-t-40">
+            @RenderBody()
         </div>
+        <hr />
+        <footer class="footer text-center">© @DateTime.Now.Year | Powered by Love</footer>
     </div>
 
     @RenderSection("scripts", required: false)
 
-    <script src="~/js/jquery.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
-    <script src="~/js/sidebar-nav.min.js"></script>
     <script src="~/js/custom.js"></script>
-
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/sidebar-nav.min.js"></script>
 </body>
 </html>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EcommerceApplication.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("[area]/[controller]/[action]")]
     public class Products : Controller
     {
         // GET: /<controller>/

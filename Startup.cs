@@ -8,9 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using EcommerceApplication.DataContext;
-using EcommerceApplication.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using EcommerceApplication.Models;
 
 namespace EcommerceApplication
 {
@@ -23,12 +22,6 @@ namespace EcommerceApplication
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
-
-            if (env.IsDevelopment())
-            {
-                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
-                builder.AddApplicationInsightsSettings(developerMode: true);
-            }
             Configuration = builder.Build();
         }
 
@@ -38,20 +31,23 @@ namespace EcommerceApplication
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            //services.AddApplicationInsightsTelemetry(Configuration);
-
+            services.AddApplicationInsightsTelemetry(Configuration);
             services.AddMvc();
-            services.AddEntityFramework()
-                .AddDbContext<MyContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<MyContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+
+            services.AddIdentity<Customer, ApplicationRole>()
+                .AddEntityFrameworkStores<MyContext>()
+                .AddDefaultTokenProviders();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseApplicationInsightsRequestTelemetry();
+            app.UseApplicationInsightsExceptionTelemetry();
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
-            app.UseApplicationInsightsRequestTelemetry();
 
             if (env.IsDevelopment())
             {
@@ -63,9 +59,9 @@ namespace EcommerceApplication
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseApplicationInsightsExceptionTelemetry();
-
             app.UseStaticFiles();
+
+            app.UseIdentity();
 
             app.UseMvc(routes =>
             {
@@ -73,11 +69,19 @@ namespace EcommerceApplication
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
 
-                //Admin Area Route
+                //Admin Area route
                 routes.MapRoute(
-                    name: "AdminAreaRoute",
-                    template: "{area:exists}/{controller=Products}/{action=Index}/{id}");
+                    name: "AdminAreaProduct",
+                    template: "{area:exists}/{controller=Products}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "AdminAreaCategory",
+                    template: "{area:exists}/{controller=Products}/{action=Index}/{id?}");
             });
         }
     }
 }
+
+
+
+
