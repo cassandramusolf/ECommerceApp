@@ -11,14 +11,14 @@ namespace EcommerceApplication.Models
     [Table("Customer")]
     public class Customer:IdentityUser
     {
-        public Customer()
-        {
-            CartItems = new HashSet<CartItem>();
-            Orders = new HashSet<Order>();
-        }
+        //public Customer()
+        //{
+        //    CartItems = new HashSet<CartItem>();
+        //    Orders = new HashSet<Order>();
+        //}
 
        // public int CustomerId { get; set; }
-        [Required(ErrorMessage = "Customer Name is required!")]
+        //[Required(ErrorMessage = "Customer Name is required!")]
         public string CustomerName { get; set; }
         public string LastName { get; set; }
         public string Address1 { get; set; }
@@ -31,7 +31,7 @@ namespace EcommerceApplication.Models
         //[EmailAddress]
         //public string EmailAddress { get; set; }
         public DateTime? DateEntered { get; set; }
-        public virtual ICollection<CartItem> CartItems { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
+        //public virtual ICollection<CartItem> CartItems { get; set; }
+        //public virtual ICollection<Order> Orders { get; set; }
     }
 }

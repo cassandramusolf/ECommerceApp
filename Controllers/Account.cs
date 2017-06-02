@@ -9,13 +9,13 @@ using EcommerceApplication.ViewModels.Account;
 
 namespace EcommerceApplication.Controllers
 {
-    public class AccountController : Controller
+    public class Account : Controller
     {
         private readonly UserManager<Customer> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly SignInManager<Customer> _signInManager;
 
-        public AccountController(UserManager<Customer> userManager, RoleManager<ApplicationRole> roleManager, SignInManager<Customer> signInManager)
+        public Account(UserManager<Customer> userManager, RoleManager<ApplicationRole> roleManager, SignInManager<Customer> signInManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -60,7 +60,7 @@ namespace EcommerceApplication.Controllers
                     }
                     _userManager.AddToRoleAsync(customer, "SiteUser").Wait();
                     await _signInManager.SignInAsync(customer, isPersistent: false);
-                    return RedirectToAction("Login", "AccountController");
+                    return RedirectToAction("Login", "Account");
                 }
             }
             return View(registerVM);
@@ -75,7 +75,7 @@ namespace EcommerceApplication.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginVM loginVM)
+        public IActionResult Login(LoginVM loginVM)
         {
             if (ModelState.IsValid)
             {

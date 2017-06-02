@@ -1,5 +1,5 @@
---temp-output:C:\Users\Cassie\Desktop\ECommerceApp\obj\Debug\netcoreapp1.0\
---out:C:\Users\Cassie\Desktop\ECommerceApp\bin\Debug\netcoreapp1.0\ECommerceApp.dll
+--temp-output:C:\Users\Cassie\Desktop\ECommerceApp\bin\ECommerceApp\obj\Debug\netcoreapp1.0\
+--out:C:\Users\Cassie\Desktop\ECommerceApp\bin\ECommerceApp\bin\Debug\netcoreapp1.0\ECommerceApp.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -213,12 +213,12 @@
 --reference:C:\Users\Cassie\.nuget\packages\System.Threading.Timer\4.3.0\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\Cassie\.nuget\packages\System.Xml.ReaderWriter\4.3.0\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\Cassie\.nuget\packages\System.Xml.XDocument\4.3.0\ref\netstandard1.3\System.Xml.XDocument.dll
---resource:"C:\Users\Cassie\Desktop\ECommerceApp\obj\Debug\netcoreapp1.0\ECommerceAppdotnet-compile.deps.json",ECommerceApp.deps.json
+--resource:"C:\Users\Cassie\Desktop\ECommerceApp\bin\ECommerceApp\obj\Debug\netcoreapp1.0\ECommerceAppdotnet-compile.deps.json",ECommerceApp.deps.json
 C:\Users\Cassie\Desktop\ECommerceApp\Program.cs
 C:\Users\Cassie\Desktop\ECommerceApp\Startup.cs
 C:\Users\Cassie\Desktop\ECommerceApp\Areas\Admin\Controllers\Category.cs
 C:\Users\Cassie\Desktop\ECommerceApp\Areas\Admin\Controllers\Products.cs
-C:\Users\Cassie\Desktop\ECommerceApp\Controllers\Account.cs
+C:\Users\Cassie\Desktop\ECommerceApp\Controllers\AccountController.cs
 C:\Users\Cassie\Desktop\ECommerceApp\Controllers\HomeController.cs
 C:\Users\Cassie\Desktop\ECommerceApp\DataContext\MyContext.cs
 C:\Users\Cassie\Desktop\ECommerceApp\Migrations\20170602205604_Initial.cs

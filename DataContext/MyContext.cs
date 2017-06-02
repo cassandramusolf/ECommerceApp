@@ -1,4 +1,5 @@
 ﻿using EcommerceApplication.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EcommerceApplication.DataContext
 {
-    public class MyContext:DbContext
+    public class MyContext:IdentityDbContext<Customer, ApplicationRole, string>
     {
         public MyContext(DbContextOptions<MyContext> options): base(options)
         {
