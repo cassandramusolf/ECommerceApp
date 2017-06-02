@@ -83,7 +83,7 @@ namespace EcommerceApplication.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "HomeController");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
